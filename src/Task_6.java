@@ -4,27 +4,45 @@
 //        12345, без остатка. Показать общее количество найденных
 //        чисел.
 
+import java.time.LocalDate;
+
 public class Task_6 {
     public static void main(String[] args) {
+        int count = 0;
 
-
-         for (int k = 12345677; k < 100000000; k++){
+        for (int i = 10000000; i < 100000000; i++) {
+            int step = 0;
+            int number = i;
             boolean flag = true;
-            int i = k;
-            for (int s = 0; s < 7;s++) {
-                int value_1 = i % 10;
-                for (int j = 0; j < 7 - s; j++) {
-                    int temp = i / 10;
-                    //temp /= 10;
-                    int value_2 = temp % 10;
-                    if (value_1 == value_2) {
-                        flag = false;
-                        break ;
+
+            while (number > 0 && flag) {
+                int tempCifra = number % 10;
+                int stepTemp = 0;
+                int numberTemp = i;
+
+                while (numberTemp > 0 && flag) {
+                    int tempCifra1 = numberTemp % 10;
+                    if (step == stepTemp) {
+                        numberTemp++;
+                        stepTemp++;
+                        continue;
                     }
+                    if (tempCifra1 == tempCifra) {
+                        flag = false;
+                        break;
+                    }
+                    numberTemp /= 10;
+                    stepTemp++;
                 }
-                //i /= 10;
+                number /= 10;
+                step++;
             }
-            if (flag) System.out.println(k);
+
+            if (flag) {
+                System.out.println(i);
+                if (i % 12345 == 0) count++;
+            }
         }
+        System.out.println(count);
     }
-}       //доделать
+}
