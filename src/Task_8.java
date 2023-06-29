@@ -11,9 +11,17 @@
 public class Task_8 {
     public static void main(String[] args) {
         int hours = 0;
-        int minuts = 0;
-        while (hours < 24){
-            hours
+        int count = 0;      // счётчик
+
+        for (; hours < 24; hours++){
+            int minutes = 0;
+            for (; minutes < 59; minutes++){
+                if (hours / 10 == minutes % 10 && hours % 10 == minutes / 10){
+                    System.out.printf("time %02d:%02d\n", hours, minutes);
+                    count++;
+                }
+            }
         }
+        System.out.printf("Oбщее число комбинаций: %d", count);
     }
 }
